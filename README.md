@@ -53,14 +53,16 @@ output
 building docker container
 --------------------------
 
+```
 docker build -t fabriziofiorucci/dump1090mqtt:1.0 .
 docker tag fabriziofiorucci/dump1090mqtt:1.0 my-registry:5000/fabriziofiorucci/dump1090mqtt:1.0
 docker push my-registry:5000/fabriziofiorucci/dump1090mqtt:1.0
-
+```
 
 sample docker-compose.yml
 --------------------------
 
+```
 version: "3"
 
 services:
@@ -77,3 +79,4 @@ services:
       - DUMP1090_HOST=dump1090.fqdn.tld
       - DUMP1090_PORT=30003
       - RADARNAME=my-radar-name
+```
