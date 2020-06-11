@@ -48,3 +48,32 @@ output
 |Topic| Payload |
 |:--- |:--- |
 |`/adsb/RADAR/ICAOADDR` | Same as port 30003 of [dump1090](https://github.com/antirez/dump1090), CSV in [the format of SBS BaseStation](http://www.homepages.mcb.net/bones/SBS/Article/Barebones42_Socket_Data.htm).
+
+
+building docker container
+--------------------------
+
+docker build -t fabriziofiorucci/dump1090mqtt:1.0 .
+docker tag fabriziofiorucci/dump1090mqtt:1.0 my-registry:5000/fabriziofiorucci/dump1090mqtt:1.0
+docker push my-registry:5000/fabriziofiorucci/dump1090mqtt:1.0
+
+
+sample docker-compose.yml
+--------------------------
+
+version: "3"
+
+services:
+
+  dump1090mqtt:
+    image: my-registry:5000/fabriziofiorucci/dump1090mqtt:1.0
+    container_name: dump1090mqtt
+    restart: always
+    environment:
+      - MQTT_HOST=mqtt-broker.fqdn.tld
+      - MQTT_PORT=1883
+      - MQTT_USER=mqtt-username
+      - MQTT_PASS=mqtt-password
+      - DUMP1090_HOST=dump1090.fqdn.tld
+      - DUMP1090_PORT=30003
+      - RADARNAME=my-radar-name
