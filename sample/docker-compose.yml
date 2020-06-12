@@ -3,7 +3,7 @@ version: "3"
 services:
 
   dump1090mqtt:
-    image: MY-PRIVATE-REGISTRY:5000/snt/dump1090mqtt:1.0
+    image: MY-PRIVATE-REGISTRY:5000/fabriziofiorucci/dump1090mqtt:1.0
     container_name: dump1090mqtt
     restart: always
     environment:
